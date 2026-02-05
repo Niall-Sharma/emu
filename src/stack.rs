@@ -20,6 +20,7 @@ impl Stack {
             None => Err("Empty stack"),
             Some(value) => {
                 self.size = self.size - 1;
+                println!("{:?}", value);
                 Ok(value)
             }
         }
