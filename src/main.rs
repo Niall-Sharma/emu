@@ -139,19 +139,18 @@ fn main() -> Result<(), &'static str> {
                 }
                 Err(e) => error_handler(ops.get(0).unwrap(), line_number, e),
             },
-            None => eprintln!("ERROR: INVALID operation at LINE: {line_number}"),
-            Some(&_) => eprintln!("ERROR: INVALID operation at LINE: {line_number}"),
+            None | Some(&_) => eprintln!("ERROR: INVALID operation at LINE: {line_number}"),
         }
         line_number = line_number + 1;
     }
     Ok(())
 }
 
-fn generic_error_handler(op: &&str, line_number: usize) {
+fn generic_error_handler(op: &str, line_number: usize) {
     eprintln!("ERROR: Invalid {op} at LINE: {line_number}");
     std::process::exit(1)
 }
-fn error_handler(op: &&str, line_number: usize, e: &'static str) {
+fn error_handler(op: &str, line_number: usize, e: &'static str) {
     eprintln!("ERROR: Invalid {op} at LINE: {line_number}: {e}");
     std::process::exit(1)
 }
