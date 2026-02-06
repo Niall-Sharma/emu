@@ -12,13 +12,18 @@ fn main() -> Result<(), &'static str> {
     let file = fs::read_to_string(&path);
 
     for line in file.unwrap().lines() {
-        if line != "" {
-            program.push(line.to_string());
-        }
+        program.push(line.to_string());
     }
     let mut line_number = 0;
     while line_number < program.len() {
         let line = &program[line_number];
+
+        let line = line.split("#").next().unwrap_or("").trim();
+        if line.is_empty() {
+            line_number += 1;
+            continue;
+        }
+
         let ops: Vec<&str> = line.split_whitespace().collect();
         match ops.get(0) {
             Some(&"POP") => match stack.pop() {
