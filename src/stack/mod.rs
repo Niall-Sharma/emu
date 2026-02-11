@@ -1,5 +1,8 @@
 use std::collections::HashMap;
 
+#[cfg(test)]
+mod stack_tests;
+
 pub struct Stack {
     size: u32,
     stack_array: Vec<i32>,
