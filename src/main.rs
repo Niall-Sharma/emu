@@ -7,6 +7,9 @@ fn main() {
     let mut program: Vec<String> = Vec::new();
 
     let cli: Vec<String> = env::args().collect();
+    if cli.len() != 2usize {
+        panic!("USAGE: ./emu INPUT_FILEPATH")
+    }
     let path = &cli[1];
 
     let file = fs::read_to_string(&path);
